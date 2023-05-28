@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require("dotenv");
 const cartRouter = require('./routes/cart')
 const productRouter = require('./routes/product')
 
@@ -14,11 +15,12 @@ app.use((req, res, next) => {
     next();
 })
 
-const MONGO = process.env.MONGO_PASSWORD;
+dotenv.config();
+const MONGODB_PW = process.env.MONGODB_PW;
 
 const database = (module.exports = () => {
     try {
-        mongoose.connect(`mongodb+srv://MariaStrime:nr8pWepZb6d0G2QJ@cluster0.d08vkqb.mongodb.net/?retryWrites=true&w=majority`,
+        mongoose.connect(`mongodb+srv://${MONGODB_PW}:nr8pWepZb6d0G2QJ@cluster0.d08vkqb.mongodb.net/?retryWrites=true&w=majority`,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true

@@ -2,6 +2,7 @@ const Cart = require("../models/Cart")
 const Product = require("./../models/Product")
 const jwt = require('jsonwebtoken')
 
+const JWT_SECRET = process.env.JWT_SECRET
 /**
  * Expects request to contain:
  * {bill: Number}
@@ -17,7 +18,7 @@ exports.createCart = (req, res, next) => {
                 cartId: cart._id,
                 token: jwt.sign(
                     { cartId: cart._id },
-                    'KEJHKJlkfjsdklfjskldklsq78749080jkfsdlkjfsè389809',
+                    `${JWT_SECRET}`,
                     { expiresIn: '24h' })
             })
         })

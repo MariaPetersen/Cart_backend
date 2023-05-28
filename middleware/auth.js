@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv");
 
-const KEY = process.env.RANDOM_KEY
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'KEJHKJlkfjsdklfjskldklsq78749080jkfsdlkjfsè389809')
+        const decodedToken = jwt.verify(token, `${JWT_SECRET}`,)
         const cartId = decodedToken.cartId
         req.auth = {
             cartId: cartId

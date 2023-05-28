@@ -5,7 +5,9 @@ const router = express.Router();
 
 const productCtrl = require('./../controllers/product');
 
-router.put('/api/product', auth, productCtrl.addOneProduct)
+router.post('/api/products', auth, productCtrl.addOneProduct)
+
+
 router.put('/api/product/modify', auth, productCtrl.updateProductQuantity)
 router.delete('/api/product', auth, productCtrl.deleteOneProduct)
 
